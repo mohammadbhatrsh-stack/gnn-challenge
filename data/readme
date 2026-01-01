@@ -1,1 +1,2 @@
-
+train.csv                     # Public: features + labels for training
+│   ├── test.csv              # Public: features only, labels removed
