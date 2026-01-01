@@ -2,15 +2,29 @@ import torch
 import pandas as pd
 import torch.nn.functional as F
 from torch_geometric.loader import DataLoader
+import os
 
 from dataset import TopologicalDataset
 from model import GINModel
 
 # ----------------------------
+# Paths (root of repo)
+# ----------------------------
+# Get the absolute path of this script
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
+
+DATA_DIR = os.path.join(REPO_ROOT, "data")
+SUBMISSIONS_DIR = os.path.join(REPO_ROOT, "submissions")
+
+# Make sure submissions folder exists
+os.makedirs(SUBMISSIONS_DIR, exist_ok=True)
+
+# ----------------------------
 # Load data splits
 # ----------------------------
-train_df = pd.read_csv("../data/train.csv")
-test_df = pd.read_csv("../data/test.csv")
+train_df = pd.read_csv(os.path.join(DATA_DIR, "train.csv"))
+test_df = pd.read_csv(os.path.join(DATA_DIR, "test.csv"))
 
 dataset = TopologicalDataset("MUTAG", topo_config="degree")
 
@@ -56,10 +70,15 @@ with torch.no_grad():
         out = model(data)
         predictions.extend(out.argmax(dim=1).tolist())
 
+# ----------------------------
+# Save submission
+# ----------------------------
+submission_path = os.path.join(SUBMISSIONS_DIR, "sample_submission.csv")
+
 submission = pd.DataFrame({
     "graph_index": test_df.graph_index,
     "target": predictions
 })
 
-submission.to_csv("../submissions/sample_submission.csv", index=False)
-print("Saved submissions/sample_submission.csv")
+submission.to_csv(submission_path, index=False)
+print(f"Saved submission to: {submission_path}")
