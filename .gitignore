@@ -1,5 +1,7 @@
 # Ignore private labels
-   private_data/
+   data/test_labels.csv
+   data/validation.csv
+
 # Python cache files
 __pycache__/
 *.pyc
