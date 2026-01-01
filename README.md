@@ -112,6 +112,14 @@ gnn-challenge/
 └── README.md
 **📜 License**
 This project is released under the MIT License.
+## 🏆 Leaderboard
+The leaderboard is updated automatically for every valid submission.
+How it works:
+1. Submit a CSV file via Pull Request
+2. GitHub Actions evaluates your submission
+3. Macro F1-score is computed
+4. Leaderboard is updated automatically
+Only the **best-performing submissions** appear at the top.
 **📬 Contact**
 For questions or clarifications, please open a GitHub Issue.
 Good luck — and happy graph learning! 🧠📊
