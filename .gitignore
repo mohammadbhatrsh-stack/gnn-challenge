@@ -1,3 +1,5 @@
+# Ignore private labels
+   private_data/
 # Python cache files
 __pycache__/
 *.pyc
