@@ -1,7 +1,5 @@
-# Ignore private labels
-gnn-challenge/private_data/test_labels.csv
-gnn-challenge/private_data/validation.csv
-
+# Private challenge labels (DO NOT PUBLISH)
+private_data/
 # Python cache files
 __pycache__/
 *.pyc
